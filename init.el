@@ -53,6 +53,30 @@
 (global-set-key (kbd "C-<f8>") 'upcase-dwim)
 (global-set-key (kbd "M-u") 'up-list)
 
+;; Org-mode setups
+(setq org-startup-with-inline-images t)
+(setq org-directory "~/Documents/org")
+(setq org-capture-templates
+      `(("j" "Journal" entry
+         (file+olp+datetree "journal.org")
+         "* %?\n%U\n" :empty-lines 1)
+        ))
+
+;; 中文输入法和 emacs 配合
+;; 模拟 emacs-rime 的行为，但使用外部输入法：
+;; 首先需要切换 windows 的输入法为小狼毫，
+;; `C-\\' 切换小狼毫的状态，同时在 rime 的设定中禁用 `C-SPC':
+;; patch:
+;;     key_binder/bindings:
+;;       - {accept: "Control+Space", send: ascii_mode, when: always}
+(defun my/toggle-ime ()
+  (interactive)
+  (if (w32-get-ime-open-status)
+      (w32-set-ime-open-status nil)
+    (w32-set-ime-open-status t)))
+(global-set-key (kbd "C-\\") 'my/toggle-ime)
+
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (message "Emacs ready in %s with %d garbage collections."
