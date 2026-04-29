@@ -61,6 +61,7 @@
          (file+olp+datetree "journal.org")
          "* %?\n%U\n" :empty-lines 1)
         ))
+(setq org-modules '())
 
 ;; 中文输入法和 emacs 配合
 ;; 模拟 emacs-rime 的行为，但使用外部输入法：
