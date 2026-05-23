@@ -62,6 +62,8 @@
          "* %?\n%U\n" :empty-lines 1)
         ))
 (setq org-modules '())
+(add-hook 'org-mode-hook 'visual-line-mode)
+(setq-default word-wrap-by-category t)
 
 ;; 中文输入法和 emacs 配合
 ;; 模拟 emacs-rime 的行为，但使用外部输入法：
